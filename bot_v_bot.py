@@ -4,8 +4,10 @@ from dlgo import gotypes
 from dlgo.utils import print_board, print_move
 import time
 
+# print("__name__ = ", __name__)
+
 def main():
-  board_size = 9
+  board_size = 19
   game = goboard.GameState.new_game(board_size)
   bots = {
     gotypes.Player.black: agent.naive.RandomBot(),
