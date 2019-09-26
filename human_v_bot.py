@@ -8,7 +8,17 @@ from six.moves import input
 
 
 def main():
-    board_size = 9
+    while True:
+        board_size = input('Enter the dimensions of the square Go board. (Integer between 5 and 19):')
+        try:
+            board_size = int(board_size)
+        except ValueError:
+            print('Invalid Entry')
+            continue
+        if board_size in range(5, 20):
+            break
+        else:
+            print('Invalid Entry')
     game = goboard.GameState.new_game(board_size)
     bot = agent.RandomBot()
 
