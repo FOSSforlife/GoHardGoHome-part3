@@ -3,6 +3,7 @@ from __future__ import print_function
 from dlgo import agent
 from dlgo import goboard
 from dlgo import gotypes
+from get_score import compute_score
 from dlgo.utils import print_board, print_move, point_from_coords
 from six.moves import input
 
@@ -24,6 +25,7 @@ def main():
 
     while not game.is_over():
         print(chr(27) + "[2J")
+        compute_score(game.board)
         print_board(game.board)
         if game.next_player == gotypes.Player.black:
             human_move = input('-- ')
