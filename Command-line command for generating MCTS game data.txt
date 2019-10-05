@@ -1,1 +1,1 @@
-python generate_mcts_games.py ­n 20 ­­board­out features.npy ­­move­out labels.npy
+python generate_mcts_games.py -n 20 --board-out features.npy --move-out labels.npy
