@@ -31,8 +31,7 @@ class GoDataProcessor:
 # end::processor_init[]
 
 # tag::load_go_data[]
-    def load_go_data(self, data_type='train',  # <1>
-                     num_samples=1000):  # <2>
+    def load_go_data(self, data_type='train', num_samples=1000):  # <1><2>
         index = KGSIndex(data_directory=self.data_dir)
         index.download_files()  # <3>
 
