@@ -11,15 +11,11 @@ from collections import namedtuple
 import h5py
 import numpy as np
 
+from dlgo import agent
 from dlgo import kerasutil
 from dlgo import scoring
 from dlgo import rl
 from dlgo.goboard_fast import GameState, Player, Point
-
-
-def load_agent(filename):
-    with h5py.File(filename, 'r') as h5file:
-        return rl.load_ac_agent(h5file)
 
 
 COLS = 'ABCDEFGHJKLMNOPQRST'
@@ -63,18 +59,10 @@ def simulate_game(black_player, white_player, board_size):
         Player.black: black_player,
         Player.white: white_player,
     }
-    num_moves = 0
     while not game.is_over():
-        if num_moves < 16:
-            # Pick randomly.
-            agents[game.next_player].set_temperature(1.0)
-        else:
-            # Favor the best-looking move.
-            agents[game.next_player].set_temperature(0.05)
         next_move = agents[game.next_player].select_move(game)
         moves.append(next_move)
         game = game.apply_move(next_move)
-        num_moves += 1
 
     print_board(game.board)
     game_result = scoring.compute_game_result(game)
@@ -94,7 +82,7 @@ def get_temp_file():
 
 
 def do_self_play(board_size, agent1_filename, agent2_filename,
-                 num_games,
+                 num_games, temperature,
                  experience_filename,
                  gpu_frac):
     kerasutil.set_gpu_memory_target(gpu_frac)
@@ -102,8 +90,11 @@ def do_self_play(board_size, agent1_filename, agent2_filename,
     random.seed(int(time.time()) + os.getpid())
     np.random.seed(int(time.time()) + os.getpid())
 
-    agent1 = load_agent(agent1_filename)
-    agent2 = load_agent(agent2_filename)
+    with h5py.File(agent1_filename, 'r') as agent1f:
+        agent1 = agent.load_policy_agent(agent1f)
+    agent1.set_temperature(temperature)
+    with h5py.File(agent2_filename, 'r') as agent2f:
+        agent2 = agent.load_policy_agent(agent2f)
 
     collector1 = rl.ExperienceCollector()
 
@@ -133,7 +124,7 @@ def do_self_play(board_size, agent1_filename, agent2_filename,
 
 
 def generate_experience(learning_agent, reference_agent, exp_file,
-                        num_games, board_size, num_workers):
+                        num_games, board_size, num_workers, temperature):
     experience_files = []
     workers = []
     gpu_frac = 0.95 / float(num_workers)
@@ -148,6 +139,7 @@ def generate_experience(learning_agent, reference_agent, exp_file,
                 learning_agent,
                 reference_agent,
                 games_per_worker,
+                temperature,
                 filename,
                 gpu_frac,
             )
@@ -181,7 +173,8 @@ def generate_experience(learning_agent, reference_agent, exp_file,
 
 def train_worker(learning_agent, output_file, experience_file,
                  lr, batch_size):
-    learning_agent = load_agent(learning_agent)
+    with h5py.File(learning_agent, 'r') as learning_agentf:
+        learning_agent = agent.load_policy_agent(learning_agentf)
     with h5py.File(experience_file, 'r') as expf:
         exp_buffer = rl.load_experience(expf)
     learning_agent.train(exp_buffer, lr=lr, batch_size=batch_size)
@@ -197,13 +190,13 @@ def train_on_experience(learning_agent, output_file, experience_file,
     # that messes with the workers.
     worker = multiprocessing.Process(
         target=train_worker,
-        args=(
+        args=[
             learning_agent,
             output_file,
             experience_file,
             lr,
             batch_size
-        )
+        ]
     )
     worker.start()
     worker.join()
@@ -217,8 +210,10 @@ def play_games(args):
     random.seed(int(time.time()) + os.getpid())
     np.random.seed(int(time.time()) + os.getpid())
 
-    agent1 = load_agent(agent1_fname)
-    agent2 = load_agent(agent2_fname)
+    with h5py.File(agent1_fname, 'r') as agent1f:
+        agent1 = agent.load_policy_agent(agent1f)
+    with h5py.File(agent2_fname, 'r') as agent2f:
+        agent2 = agent.load_policy_agent(agent2f)
 
     wins, losses = 0, 0
     color1 = Player.black
@@ -272,6 +267,7 @@ def main():
     parser.add_argument('--games-per-batch', '-g', type=int, default=1000)
     parser.add_argument('--work-dir', '-d')
     parser.add_argument('--num-workers', '-w', type=int, default=1)
+    parser.add_argument('--temperature', '-t', type=float, default=0.0)
     parser.add_argument('--board-size', '-b', type=int, default=19)
     parser.add_argument('--lr', type=float, default=0.01)
     parser.add_argument('--bs', type=int, default=512)
@@ -298,7 +294,8 @@ def main():
             experience_file,
             num_games=args.games_per_batch,
             board_size=args.board_size,
-            num_workers=args.num_workers)
+            num_workers=args.num_workers,
+            temperature=args.temperature)
         train_on_experience(
             learning_agent, tmp_agent, experience_file,
             lr=args.lr, batch_size=args.bs)
