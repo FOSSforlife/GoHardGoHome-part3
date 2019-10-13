@@ -12,8 +12,8 @@ import time
 import h5py
 
 np.random.seed(123)
-X = np.load('../generated_games/features-200.npy')
-Y = np.load('../generated_games/labels-200.npy')
+X = np.load('generated_games/features-200.npy')
+Y = np.load('generated_games/labels-200.npy')
 
 samples = X.shape[0]
 size = 9
