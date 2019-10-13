@@ -5,8 +5,8 @@ import numpy as np
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten
 from keras.layers import Conv2D, MaxPooling2D
-from dlgo.agents.predict import DeepLearningAgent
-from dlgo.agents.predict import load_prediction_agent
+from dlgo.agent.predict import DeepLearningAgent
+from dlgo.agent.predict import load_prediction_agent
 from dlgo.encoders.sevenplane import SevenPlaneEncoder
 import time
 import h5py
