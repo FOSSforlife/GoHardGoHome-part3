@@ -1,6 +1,6 @@
 import h5py
-from dlgo.agents.predict import load_prediction_agent
-from dlgo.agents.predict import DeepLearningAgent
+from dlgo.agent.predict import load_prediction_agent
+from dlgo.agent.predict import DeepLearningAgent
 from dlgo import agent
 from dlgo import goboard
 from dlgo import gotypes
