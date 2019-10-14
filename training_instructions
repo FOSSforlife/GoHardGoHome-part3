@@ -1,0 +1,13 @@
+= to train, call the train_generator.py script:
+
+python train_generator.py
+
+- Make sure this is the python version that has tensorflow installed.
+
+- At first, some errors may occur. Depending on the system, some modifications may have to be made
+    Pay attention to any error messages and correct the issue.
+
+- To play with some parameters, you may edit the train_generator.py file on the
+    fit_generator keyword arguments. The model will be trained in epochs, and each time an epoch completes,
+    a checkpoint file will be created in the checkpoint/ directory. Make sure this directory exists before
+    committing hours to training only to have it fail!
