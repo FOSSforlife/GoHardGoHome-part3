@@ -7,6 +7,9 @@
 # PyCharm stuff
 .idea
 
+# Generated data files
+data/
+
 # C extensions
 *.so
 
