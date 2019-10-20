@@ -1,3 +1,32 @@
+# Go Hard or Go Home: Part 2
+
+## Requirements
+- [x] Create the [generate_mcts_games](./generate_mcts_games.py) file, which generates games by encoding the game state before each move, encodes the move as a one-hot vector, and applies it.
+- [x] Implement Monte-Carlo tree search, alpha-beta pruning and minimax (ch. 4). Create an MCTSAgent and let it play against itself.
+    - To test the MCTSAgent, run this command: `python ???.py`
+- [x] Create a program to create, and run Go games, and save them. Use it to generate 20 9x9 Go games, and store the features in features.py, and the labels in labels.py.
+    - This is done using [generate_mcts_games.py](./generate_mcts_games.py)
+- [x] Confirm the CNN from listings 6.24-26 of your text runs, and produces the output shown in your text. Print out the probabilities of its recommended moves (see 6.26).
+    - [mcts_go_cnn.py](./mcts_go_cnn.py)
+- [x] Create the KGSIndex class that downloads SGF files from https://u-go.net/gamerecords, and download the files. (see listing 7.1).
+    - 
+- [x] Replay the (pretend) game from Listing 7.2. Make sure it replays the game correctly.
+    - [game_replay.py](./game_replay.py)
+- [x] Create the Go data processor that can transform raw SGF data into features and labels for a machine learning algorithm.
+    - [dlgo/data/parallel_processor.py](./dlgo/data/parallel_processor.py)
+- [x] Create the OnePlaneEncoder and SevenPlaneEncoder, and verify that they produce the correct output from the text.
+    - [dlgo/encoders/oneplane.py](./dlgo/encoders/oneplane.py)
+    - [dlgo/encoders/sevenplane.py](./dlgo/encoders/sevenplane.py)
+- [x] Create the training and test generators that use the GoDataProcessor, so that Keras can use those generators to fit the model and to evaluate it.
+    - [train_generator.py](./train_generator.py)
+- [x] Add the Adagrad optimizer to allow adaptive gradient methods.
+    - The Adagrad optimizer is utilized [train_generator.py](./train_generator.py), as seen on line 43.
+- [x] Train your Go bot using different hyperparameters to get best performance.
+    - See training instructions below.
+- [x] Be written in Python. No issues are shown in PyCharm (all source code screens shown a green checkmark at the top right hand corner).
+
+
+
 # Training a new bot
 To train a new bot, call `train_new_bot.py` from the root directory.
 
