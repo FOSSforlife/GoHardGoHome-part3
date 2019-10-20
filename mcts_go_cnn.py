@@ -5,10 +5,15 @@ import numpy as np
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten
 from keras.layers import Conv2D, MaxPooling2D
+from dlgo.agent.predict import DeepLearningAgent
+from dlgo.agent.predict import load_prediction_agent
+from dlgo.encoders.sevenplane import SevenPlaneEncoder
+import time
+import h5py
 
 np.random.seed(123)
-X = np.load('../generated_games/features.npy')
-Y = np.load('../generated_games/labels.npy')
+X = np.load('./generated_games/features-200.npy')
+Y = np.load('./generated_games/labels-200.npy')
 
 samples = X.shape[0]
 size = 9
@@ -50,4 +55,10 @@ model.fit(X_train, Y_train,
 score = model.evaluate(X_test, Y_test, verbose=0)
 print('Test loss:', score[0])
 print('Test accuracy:', score[1])
+
+encoder = SevenPlaneEncoder((9, 9))
+dlAgent = DeepLearningAgent(model, encoder)
+hf = h5py.File('cnn_agent', 'w')
+dlAgent.serialize(hf)
+# time.sleep(15)
 # end::mcts_go_cnn_eval[]
