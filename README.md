@@ -1,7 +1,7 @@
 # Go Hard or Go Home: Part 2
 
 ## Requirements
-- [ ] Create the [generate_mcts_games](./generate_mcts_games.py) file, which generates games by encoding the game state before each move, encodes the move as a one-hot vector, and applies it.
+- [x] Create the [generate_mcts_games](./generate_mcts_games.py) file, which generates games by encoding the game state before each move, encodes the move as a one-hot vector, and applies it.
 - [ ] Implement Monte-Carlo tree search, alpha-beta pruning and minimax (ch. 4). Create an MCTSAgent and let it play against itself.
     - To test the MCTSAgent, run this command: `python ???.py`
 - [x] Create a program to create, and run Go games, and save them. Use it to generate 20 9x9 Go games, and store the features in features.py, and the labels in labels.py.
