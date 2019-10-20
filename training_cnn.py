@@ -62,5 +62,5 @@ encoder = SevenPlaneEncoder((19, 19))
 dlAgent = DeepLearningAgent(model, encoder)
 with h5py.File('cnn_agent.h5', 'w') as dlAgent_out:
 	dlAgent.serialize(dlAgent_out)
-time.sleep(15)
+# time.sleep(15)
 # end::mcts_go_cnn_eval[]
