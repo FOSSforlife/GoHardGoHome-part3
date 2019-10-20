@@ -22,7 +22,8 @@
 - [x] Add the Adagrad optimizer to allow adaptive gradient methods.
     - The Adagrad optimizer is utilized [train_generator.py](./train_generator.py), as seen on line 43.
 - [x] Train your Go bot using different hyperparameters to get best performance.
-    - See training instructions below.
+    - Trained bots can be found in [this Google Drive folder](https://drive.google.com/drive/u/2/folders/1HZUnoPckNOFC3Rw34y7YMT4-ILS_R9Hu).
+    - For instructions on running the trained bots as well as training new ones, see the section below.
 - [x] Be written in Python. No issues are shown in PyCharm (all source code screens shown a green checkmark at the top right hand corner).
 
 
