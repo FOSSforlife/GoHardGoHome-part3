@@ -12,7 +12,7 @@ from dlgo import agent
 from dlgo import kerasutil
 from dlgo import scoring
 from dlgo.goboard_fast import GameState, Player, Point
-
+from dlgo.agent.predict import DeepLearningAgent, load_prediction_agent
 
 COLS = 'ABCDEFGHJKLMNOPQRST'
 STONE_TO_CHAR = {
@@ -75,8 +75,8 @@ def play_games(args):
     random.seed(int(time.time()) + os.getpid())
     np.random.seed(int(time.time()) + os.getpid())
 
-    agent1 = agent.load_policy_agent(h5py.File(agent1_fname))
-    agent2 = agent.load_policy_agent(h5py.File(agent2_fname))
+    agent1 = load_prediction_agent(h5py.File(agent1_fname))
+    agent2 = load_prediction_agent(h5py.File(agent2_fname))
 
     wins, losses = 0, 0
     color1 = Player.black
