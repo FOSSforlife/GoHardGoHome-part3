@@ -6,8 +6,10 @@
     - To test the MCTSAgent, run this command: `python ???.py`
 - [x] Create a program to create, and run Go games, and save them. Use it to generate 20 9x9 Go games, and store the features in features.py, and the labels in labels.py.
     - This is done using [generate_mcts_games.py](./generate_mcts_games.py)
-- [ ] Confirm the CNN from listings 6.24-26 of your text runs, and produces the output shown in your text. Print out the **probabilities of its recommended moves** (see 6.26).
+- [x] Confirm the CNN from listings 6.24-26 of your text runs, and produces the output shown in your text. Print out the **probabilities of its recommended moves** (see 6.26).
     - [training_cnn.py](./training_cnn.py)
+    - To see the probabilities of all moves, play a bot_v_bot or human_v_bot game with the `--print-probs` flag.
+        - See "Bot vs Bot" and "Human vs Bot" sections below.
 - [ ] Create the KGSIndex class that downloads SGF files from https://u-go.net/gamerecords, and download the files. (see listing 7.1).
     - .
 - [x] Replay the (pretend) game from Listing 7.2. Make sure it replays the game correctly.
@@ -65,6 +67,7 @@ python bot_v_bot.py --bot-file-1 ./agents/deep_bot_2.h5 --bot-file-2 ./agents/de
     i.e. ./agents/deep_bot_2.h5
 --bot-file-2: REQUIRED! The file path to the h5 file that has the bot to be used.
     i.e. ./agents/deep_bot_3.h5
+--print-probs: If set, the probabilities of each bot move will be printed on each step
 ```
 
 
@@ -80,6 +83,7 @@ python human_v_bot.py --bot-file ./agents/deep_bot_2.h5
 ```
 --bot-file: REQUIRED! The file path to the h5 file that has the bot to be used.
     i.e. ./agents/deep_bot_2.h5
+--print-probs: If set, the probabilities of each bot move will be printed on each step
 ```
 
 

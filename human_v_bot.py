@@ -12,11 +12,12 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--bot-file', help="Path to the h5 file that has the bot. i.e. ./agents/deep_bot.h5", required=True)
+parser.add_argument('--print-probs', help="If set, print probabilities of each move during the bot's turn", action="store_true")
 
 args = parser.parse_args()
 
 agent1 = h5py.File(args.bot_file, "r")
-bot_1_from_file = load_prediction_agent(agent1)
+bot_1_from_file = load_prediction_agent(agent1, print_probs = args.print_probs)
 
 def main():
     while True:
@@ -34,7 +35,7 @@ def main():
     bot = bot_1_from_file
 
     while not game.is_over():
-        print(chr(27) + "[2J")
+        # print(chr(27) + "[2J")        # We decided not to clear the screen, so we can see the history of the board
         compute_score(game.board)
         print_board(game.board)
         if game.next_player == gotypes.Player.black:

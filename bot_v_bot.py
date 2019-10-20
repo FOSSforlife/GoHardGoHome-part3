@@ -11,13 +11,15 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--bot-file-1', help="Path to the h5 file that has the bot. i.e. ./agents/deep_bot.h5", required=True)
 parser.add_argument('--bot-file-2', help="Path to the h5 file that has the bot. i.e. ./agents/deep_bot.h5", required=True)
+parser.add_argument('--print-probs', help="If set, print probabilities of each move during the bot's turn", action="store_true")
 
 args = parser.parse_args()
 
 agent1 = h5py.File(args.bot_file_1, "r")
 agent2 = h5py.File(args.bot_file_2, "r")
-bot_1_from_file = load_prediction_agent(agent1)
-bot_2_from_file = load_prediction_agent(agent2)
+bot_1_from_file = load_prediction_agent(agent1, print_probs = args.print_probs)
+bot_2_from_file = load_prediction_agent(agent2, print_probs = args.print_probs)
+
 
 # better_bot = load_prediction_agent(h5py.File("./agents/deep_bot_3.h5", "r"))
 # print("__name__ = ", __name__)
@@ -40,8 +42,8 @@ def main():
         gotypes.Player.white: bot_2_from_file,
     }
     while not game.is_over():
-        time.sleep(0.3)
-        print(chr(27) + "[2J")
+        time.sleep(0.6)
+        # print(chr(27) + "[2J")        # We decided not to clear the screen, so we can see the history of the board
         compute_score(game.board)
         print_board(game.board)
         bot_move = bots[game.next_player].select_move(game)

@@ -34,7 +34,7 @@ class BoardStats():
 def compute_score(board):
     board_stats = get_stats(board)
 
-    print ("WHITE: {}  BLACK: {}".format(board_stats.white_score, board_stats.black_score))
+    print ("\n\n\n\n\nWHITE: {}  BLACK: {}".format(board_stats.white_score, board_stats.black_score))
 
 def get_stats(board):
     board_state = {}
@@ -80,7 +80,3 @@ def get_area(point, board, visited=set()):
         else:
             player_color_borders.add(player_color)
     return points_list, player_color_borders
-
-
-
-
