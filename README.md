@@ -62,7 +62,7 @@ python eval_bots_parallel.py --agent1 ./agents/deep_bot_2.h5 --agent2 ./agents/d
 
    
 # Generate games for training data
-The script `generate_mcts_games.py` generates games using the MCTS algorithm. Use this to create features.py and labels.py before training the bot.
+The script `generate_mcts_games.py` generates games using the MCTS algorithm. Use this to create features.py and labels.py before training the bot (note: this step shouldn't be necessary if you wish to use the files in the generated_games folder).
 
 ### Usage Example
 ```
