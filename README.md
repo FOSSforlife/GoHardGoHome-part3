@@ -22,7 +22,7 @@ python train_new_bot.py --bot-name=first_bot --epochs=15 --num-samples=300
 
 
 # Bot vs. Bot
-Call `bot_v_bot.py` to watch two bots play a game of Go! I have included two trained bots (~90% accuracy each) that can work as a demo. They can be seen in the in the example arguments below.
+Call `bot_v_bot.py` to watch two bots play a game of Go! I have included two trained bots (~90% accuracy each) that can work as a demo. They can be found in the Google Drive link at the bottom of this document.
 
 ### Usage Example
 ```
@@ -57,6 +57,6 @@ Using `eval_bots_parallel.py`, you can make two bots play multiple games to see 
 Usage Example:
     python eval_bots_parallel.py --agent1 ./agents/deep_bot_2.h5 --agent2 ./agents/deep_bot_3.h5 --num-games 20 --num-workers 5
         
-## Using the already trained bots
+# Using the already trained bots
 We've already trained two bots that perform at around 90% accuracy. If you'd like to use these bots
 as demos for the above scripts, they can be found [in this Google Drive folder](https://drive.google.com/drive/folders/1HZUnoPckNOFC3Rw34y7YMT4-ILS_R9Hu?usp=sharing). 
