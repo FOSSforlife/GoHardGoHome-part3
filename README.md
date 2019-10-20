@@ -7,7 +7,7 @@
     - [x] We did, however, write code enabling the MCTSAgent to play against itself in our [generate_mcts_games.py](./generate_mcts_games.py)
 - [x] Create a program to create, and run Go games, and save them. Use it to generate 20 9x9 Go games, and store the features in features.py, and the labels in labels.py.
     - This is done using [generate_mcts_games.py](./generate_mcts_games.py)
-- [x] Confirm the CNN from listings 6.24-26 of your text runs, and produces the output shown in your text. Print out the **probabilities of its recommended moves** (see 6.26).
+- [x] Confirm the CNN from listings 6.24-26 of your text runs, and produces the output shown in your text. Print out the probabilities of its recommended moves (see 6.26).
     - [training_cnn.py](./training_cnn.py)
     - To see the probabilities of all moves, play a bot_v_bot or human_v_bot game with the `--print-probs` flag.
         - See "Bot vs Bot" and "Human vs Bot" sections below.
