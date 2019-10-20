@@ -1,7 +1,8 @@
-import random
+# The following is sample code from https://github.com/maxpumperla/deep_learning_and_the_game_of_go
 
+import random
+import enum
 from dlgo.agent import Agent
-from dlgo.scoring import GameResult
 
 __all__ = [
     'DepthPrunedAgent',
@@ -10,6 +11,10 @@ __all__ = [
 MAX_SCORE = 999999
 MIN_SCORE = -999999
 
+class GameResult(enum.Enum):
+    loss = 1
+    draw = 2
+    win = 3
 
 def reverse_game_result(game_result):
     if game_result == GameResult.loss:
@@ -19,31 +24,28 @@ def reverse_game_result(game_result):
     return GameResult.draw
 
 
-# tag::depth-prune[]
 def best_result(game_state, max_depth, eval_fn):
-    if game_state.is_over():                               # <1>
-        if game_state.winner() == game_state.next_player:  # <1>
-            return MAX_SCORE                               # <1>
-        else:                                              # <1>
-            return MIN_SCORE                               # <1>
+    if game_state.is_over():                               
+        if game_state.winner() == game_state.next_player:  
+            return MAX_SCORE                               
+        else:                                              
+            return MIN_SCORE                               
 
-    if max_depth == 0:                                     # <2>
-        return eval_fn(game_state)                         # <2>
+    if max_depth == 0:                                     
+        return eval_fn(game_state)                         
 
     best_so_far = MIN_SCORE
-    for candidate_move in game_state.legal_moves():        # <3>
-        next_state = game_state.apply_move(candidate_move) # <4>
-        opponent_best_result = best_result(                # <5>
-            next_state, max_depth - 1, eval_fn)            # <5>
-        our_result = -1 * opponent_best_result             # <6>
-        if our_result > best_so_far:                       # <7>
-            best_so_far = our_result                       # <7>
+    for candidate_move in game_state.legal_moves():        
+        next_state = game_state.apply_move(candidate_move) 
+        opponent_best_result = best_result(                
+            next_state, max_depth - 1, eval_fn)            
+        our_result = -1 * opponent_best_result             
+        if our_result > best_so_far:                       
+            best_so_far = our_result                       
 
     return best_so_far
-# end::depth-prune[]
 
 
-# tag::depth-prune-agent[]
 class DepthPrunedAgent(Agent):
     def __init__(self, max_depth, eval_fn):
         Agent.__init__(self)
@@ -71,4 +73,3 @@ class DepthPrunedAgent(Agent):
                 best_moves.append(possible_move)
         # For variety, randomly select among all equally good moves.
         return random.choice(best_moves)
-# end::depth-prune-agent[]

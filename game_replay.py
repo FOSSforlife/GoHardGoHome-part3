@@ -1,5 +1,5 @@
 from dlgo.gosgf import Sgf_game
-from dlgo.goboard_fast import GameState, Move
+from dlgo.goboard import GameState, Move
 from dlgo.gotypes import Point
 from dlgo.utils import print_board
 

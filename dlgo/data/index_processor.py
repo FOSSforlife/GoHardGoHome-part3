@@ -7,10 +7,7 @@ import os
 import sys
 import multiprocessing
 import six
-if sys.version_info[0] == 3:
-    from urllib.request import urlopen, urlretrieve
-else:
-    from urllib import urlopen, urlretrieve
+from urllib.request import urlopen, urlretrieve
 
 
 def worker(url_and_target):  # Parallelize data download via multiprocessing

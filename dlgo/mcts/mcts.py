@@ -1,3 +1,5 @@
+# The following is sample code from https://github.com/maxpumperla/deep_learning_and_the_game_of_go
+
 import math
 import random
 
@@ -41,7 +43,6 @@ def show_tree(node, indent='', max_depth=3):
         show_tree(child, indent + '  ', max_depth - 1)
 
 
-# tag::mcts-node[]
 class MCTSNode(object):
     def __init__(self, game_state, parent=None, move=None):
         self.game_state = game_state
@@ -54,9 +55,7 @@ class MCTSNode(object):
         self.num_rollouts = 0
         self.children = []
         self.unvisited_moves = game_state.legal_moves()
-# end::mcts-node[]
 
-# tag::mcts-add-child[]
     def add_random_child(self):
         index = random.randint(0, len(self.unvisited_moves) - 1)
         new_move = self.unvisited_moves.pop(index)
@@ -64,15 +63,11 @@ class MCTSNode(object):
         new_node = MCTSNode(new_game_state, self, new_move)
         self.children.append(new_node)
         return new_node
-# end::mcts-add-child[]
 
-# tag::mcts-record-win[]
     def record_win(self, winner):
         self.win_counts[winner] += 1
         self.num_rollouts += 1
-# end::mcts-record-win[]
 
-# tag::mcts-readers[]
     def can_add_child(self):
         return len(self.unvisited_moves) > 0
 
@@ -81,7 +76,6 @@ class MCTSNode(object):
 
     def winning_frac(self, player):
         return float(self.win_counts[player]) / float(self.num_rollouts)
-# end::mcts-readers[]
 
 
 class MCTSAgent(agent.Agent):
@@ -90,12 +84,9 @@ class MCTSAgent(agent.Agent):
         self.num_rounds = num_rounds
         self.temperature = temperature
 
-# tag::mcts-signature[]
     def select_move(self, game_state):
         root = MCTSNode(game_state)
-# end::mcts-signature[]
 
-# tag::mcts-rounds[]
         for i in range(self.num_rounds):
             node = root
             while (not node.can_add_child()) and (not node.is_terminal()):
@@ -112,7 +103,6 @@ class MCTSAgent(agent.Agent):
             while node is not None:
                 node.record_win(winner)
                 node = node.parent
-# end::mcts-rounds[]
 
         scored_moves = [
             (child.winning_frac(game_state.next_player), child.move, child.num_rollouts)
@@ -122,7 +112,6 @@ class MCTSAgent(agent.Agent):
         for s, m, n in scored_moves[:10]:
             print('%s - %.3f (%d)' % (m, s, n))
 
-# tag::mcts-selection[]
         # Having performed as many MCTS rounds as we have time for, we
         # now pick a move.
         best_move = None
@@ -134,9 +123,7 @@ class MCTSAgent(agent.Agent):
                 best_move = child.move
         print('Select move %s with win pct %.3f' % (best_move, best_pct))
         return best_move
-# end::mcts-selection[]
 
-# tag::mcts-uct[]
     def select_child(self, node):
         """Select a child according to the upper confidence bound for
         trees (UCT) metric.
@@ -157,7 +144,6 @@ class MCTSAgent(agent.Agent):
                 best_score = uct_score
                 best_child = child
         return best_child
-# end::mcts-uct[]
 
     @staticmethod
     def simulate_random_game(game):

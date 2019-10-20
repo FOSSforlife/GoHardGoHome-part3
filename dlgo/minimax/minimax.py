@@ -1,3 +1,5 @@
+# The following is sample code from https://github.com/maxpumperla/deep_learning_and_the_game_of_go
+
 import enum
 import random
 
@@ -8,12 +10,10 @@ __all__ = [
 ]
 
 
-# tag::gameresult-enum[]
 class GameResult(enum.Enum):
     loss = 1
     draw = 2
     win = 3
-# end::gameresult-enum[]
 
 
 def reverse_game_result(game_result):
@@ -24,10 +24,7 @@ def reverse_game_result(game_result):
     return GameResult.draw
 
 
-# tag::minimax-signature[]
 def best_result(game_state):
-# end::minimax-signature[]
-# tag::minimax-base-case[]
     if game_state.is_over():
         # Game is already over.
         if game_state.winner() == game_state.next_player:
@@ -39,25 +36,21 @@ def best_result(game_state):
         else:
             # Opponent won.
             return GameResult.loss
-# end::minimax-base-case[]
 
-# tag::minimax-recursive-case[]
     best_result_so_far = GameResult.loss
     for candidate_move in game_state.legal_moves():
-        next_state = game_state.apply_move(candidate_move)     # <1>
-        opponent_best_result = best_result(next_state)         # <2>
-        our_result = reverse_game_result(opponent_best_result) # <3>
-        if our_result.value > best_result_so_far.value:        # <4>
+        next_state = game_state.apply_move(candidate_move)     
+        opponent_best_result = best_result(next_state)         
+        our_result = reverse_game_result(opponent_best_result) 
+        if our_result.value > best_result_so_far.value:        
             best_result_so_far = our_result
     return best_result_so_far
-# end::minimax-recursive-case[]
         # See what the board would look like if we play this move.
         # Find out our opponent's best move.
         # Whatever our opponent wants, we want the opposite.
         # See if this result is better than the best we've seen so far.
 
 
-# tag::minimax-agent[]
 class MinimaxAgent(Agent):
     def select_move(self, game_state):
         winning_moves = []
@@ -84,4 +77,3 @@ class MinimaxAgent(Agent):
         if draw_moves:
             return random.choice(draw_moves)
         return random.choice(losing_moves)
-# end::minimax-agent[]

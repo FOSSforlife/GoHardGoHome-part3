@@ -1,3 +1,5 @@
+# The following is sample code from https://github.com/maxpumperla/deep_learning_and_the_game_of_go
+
 # tag::data_generator[]
 import glob
 import numpy as np

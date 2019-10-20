@@ -1,3 +1,5 @@
+# The following is sample code from https://github.com/maxpumperla/deep_learning_and_the_game_of_go
+
 from __future__ import print_function
 from __future__ import absolute_import
 import os
@@ -12,7 +14,7 @@ from os import sys
 from keras.utils import to_categorical
 
 from dlgo.gosgf import Sgf_game
-from dlgo.goboard_fast import Board, GameState, Move
+from dlgo.goboard import Board, GameState, Move
 from dlgo.gotypes import Player, Point
 from dlgo.data.index_processor import KGSIndex
 from dlgo.data.sampling import Sampler

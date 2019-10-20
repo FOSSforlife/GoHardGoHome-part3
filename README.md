@@ -3,15 +3,16 @@
 ## Requirements
 - [x] Create the [generate_mcts_games](./generate_mcts_games.py) file, which generates games by encoding the game state before each move, encodes the move as a one-hot vector, and applies it.
 - [ ] Implement Monte-Carlo tree search, alpha-beta pruning and minimax (ch. 4). Create an MCTSAgent and let it play against itself.
-    - To test the MCTSAgent, run this command: `python ???.py`
+    - [ ] We did not create an agent with all of these features. However, we downloaded and observed the code for alpha-beta pruning and minimax (seen in the minimax folder), as well as a default MCTSAgent from the author's GitHub.
+    - [x] We did, however, write code enabling the MCTSAgent to play against itself in our [generate_mcts_games.py](./generate_mcts_games.py)
 - [x] Create a program to create, and run Go games, and save them. Use it to generate 20 9x9 Go games, and store the features in features.py, and the labels in labels.py.
     - This is done using [generate_mcts_games.py](./generate_mcts_games.py)
 - [x] Confirm the CNN from listings 6.24-26 of your text runs, and produces the output shown in your text. Print out the **probabilities of its recommended moves** (see 6.26).
     - [training_cnn.py](./training_cnn.py)
     - To see the probabilities of all moves, play a bot_v_bot or human_v_bot game with the `--print-probs` flag.
         - See "Bot vs Bot" and "Human vs Bot" sections below.
-- [ ] Create the KGSIndex class that downloads SGF files from https://u-go.net/gamerecords, and download the files. (see listing 7.1).
-    - .
+- [x] Create the KGSIndex class that downloads SGF files from https://u-go.net/gamerecords, and download the files. (see listing 7.1).
+    - [dlgo/data/index_processor.py](./dlgo/data/index_processor.py)
 - [x] Replay the (pretend) game from Listing 7.2. Make sure it replays the game correctly.
     - [game_replay.py](./game_replay.py)
 - [x] Create the Go data processor that can transform raw SGF data into features and labels for a machine learning algorithm.
@@ -26,7 +27,8 @@
 - [x] Train your Go bot using different hyperparameters to get best performance.
     - Trained bots can be found in [this Google Drive folder](https://drive.google.com/drive/u/2/folders/1HZUnoPckNOFC3Rw34y7YMT4-ILS_R9Hu).
     - For instructions on running the trained bots as well as training new ones, see the section below.
-- [x] Be written in Python. No issues are shown in PyCharm (all source code screens shown a green checkmark at the top right hand corner).
+- [ ] Be written in Python. No issues are shown in PyCharm (all source code screens shown a green checkmark at the top right hand corner).
+    - As seen in [pylint.txt](./pylint.txt), there are still some errors in the kerasutil and SGF files, but this does not have an affect on the code's ability to run and meet the rest of the requirements.
 
 
 

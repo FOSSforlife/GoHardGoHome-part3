@@ -1,6 +1,5 @@
 from __future__ import print_function
 
-# tag::mcts_go_cnn_preprocessing[]
 import numpy as np
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten
@@ -24,9 +23,7 @@ X = X.reshape(samples, size, size, 1)
 train_samples = 10000
 X_train, X_test = X[:train_samples], X[train_samples:]
 Y_train, Y_test = Y[:train_samples], Y[train_samples:]
-# end::mcts_go_cnn_preprocessing[]
 
-# tag::mcts_go_cnn_model[]
 model = Sequential()
 model.add(Conv2D(32, kernel_size=(3, 3),
                  activation='relu',
@@ -44,9 +41,7 @@ model.summary()
 model.compile(loss='categorical_crossentropy',
               optimizer='sgd',
               metrics=['accuracy'])
-# end::mcts_go_cnn_model[]
 
-# tag::mcts_go_cnn_eval[]
 model.fit(X_train, Y_train,
           batch_size=64,
           epochs=5,
@@ -63,4 +58,3 @@ dlAgent = DeepLearningAgent(model, encoder)
 with h5py.File('cnn_agent.h5', 'w') as dlAgent_out:
 	dlAgent.serialize(dlAgent_out)
 # time.sleep(15)
-# end::mcts_go_cnn_eval[]

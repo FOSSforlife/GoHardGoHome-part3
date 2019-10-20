@@ -11,7 +11,7 @@ import numpy as np
 from dlgo import agent
 from dlgo import kerasutil
 from dlgo import scoring
-from dlgo.goboard_fast import GameState, Player, Point
+from dlgo.goboard import GameState, Player, Point
 from dlgo.agent.predict import DeepLearningAgent, load_prediction_agent
 
 COLS = 'ABCDEFGHJKLMNOPQRST'

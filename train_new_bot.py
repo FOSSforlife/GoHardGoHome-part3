@@ -1,4 +1,3 @@
-# tag::e2e_imports[]
 import h5py
 import argparse
 
@@ -10,9 +9,7 @@ from dlgo.data.parallel_processor import GoDataProcessor
 from dlgo.encoders.sevenplane import SevenPlaneEncoder
 # from dlgo.httpfrontend import get_web_app
 from dlgo.networks import large
-# end::e2e_imports[]
 
-# tag::e2e_processor[]
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--bot-name', help="Name of the bot. <bot-name>_bot.h5 will be the name of the file.", default="default")
@@ -29,13 +26,11 @@ if __name__ == '__main__':
     nb_classes = go_board_rows * go_board_cols
     encoder = SevenPlaneEncoder((go_board_rows, go_board_cols))
     processor = GoDataProcessor(encoder=encoder.name())
-    # generator = processor.load_go_data('train', args.num_samples, use_generator=True)  # <3>
+    # generator = processor.load_go_data('train', args.num_samples, use_generator=True)  
     # test_generator = processor.load_go_data('test', args.num_samples, use_generator=True)
 
     X, y = processor.load_go_data(num_samples=args.num_samples)
-    # end::e2e_processor[]
-
-    # tag::e2e_model[]
+    
     input_shape = (encoder.num_planes, go_board_rows, go_board_cols)
     model = Sequential()
     network_layers = large.layers(input_shape)
@@ -45,9 +40,7 @@ if __name__ == '__main__':
     model.compile(loss='categorical_crossentropy', optimizer=args.optimizer, metrics=['accuracy'])
 
     model.fit(X, y, batch_size=args.batch_size, epochs=args.epochs, verbose=1)
-    # end::e2e_model[]
-
-    # tag::e2e_agent[]
+    
     deep_learning_bot = DeepLearningAgent(model, encoder)
     try:
         deep_learning_bot.serialize(h5py.File("./agents/{}_bot.h5".format(args.bot_name)))
@@ -58,12 +51,9 @@ if __name__ == '__main__':
         deep_learning_bot.serialize(h5py.File("./agents/{}_bot.h5".format(new_name)))
         print("Saving {}_bot.h5 to agents/".format(new_name))
 
-    # end::e2e_agent[]
-
-    # tag::e2e_load_agent[]
+    
     # model_file = h5py.File("./agents/deep_bot_3.h5", "r")
     # bot_from_file = load_prediction_agent(model_file)
 
     # web_app = get_web_app({'predict': bot_from_file})
     # web_app.run()
-    # end::e2e_load_agent[]

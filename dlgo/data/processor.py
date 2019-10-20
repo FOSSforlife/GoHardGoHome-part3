@@ -1,3 +1,5 @@
+# The following is sample code from https://github.com/maxpumperla/deep_learning_and_the_game_of_go
+
 from __future__ import absolute_import
 
 # tag::base_imports[]
@@ -13,7 +15,7 @@ from keras.utils import to_categorical
 
 # tag::dlgo_imports[]
 from dlgo.gosgf import Sgf_game
-from dlgo.goboard_fast import Board, GameState, Move
+from dlgo.goboard import Board, GameState, Move
 from dlgo.gotypes import Player, Point
 from dlgo.encoders.base import get_encoder_by_name
 
