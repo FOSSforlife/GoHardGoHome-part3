@@ -41,6 +41,11 @@ python bot_v_bot.py --bot-file-1 ./agents/deep_bot_2.h5 --bot-file-2 ./agents/de
 # Evaluate bots in parallel
 Using `eval_bots_parallel.py`, you can make two bots play multiple games to see which one is the best one!
 
+### Usage Example
+```
+python eval_bots_parallel.py --agent1 ./agents/deep_bot_2.h5 --agent2 ./agents/deep_bot_3.h5 --num-games 20 --num-workers 5
+```   
+
 ### Arguments
 ```
 --agent1: REQUIRED! The file path to the h5 file that has the bot to be used.
@@ -54,9 +59,26 @@ Using `eval_bots_parallel.py`, you can make two bots play multiple games to see 
     will get 6 games, for a total of 18.
 ```
 
-Usage Example:
-    python eval_bots_parallel.py --agent1 ./agents/deep_bot_2.h5 --agent2 ./agents/deep_bot_3.h5 --num-games 20 --num-workers 5
-        
+
+   
+# Generate games for training data
+The script `generate_mcts_games.py` generates games using the MCTS algorithm. Use this to create features.py and labels.py before training the bot.
+
+### Usage Example
+```
+python generate_mcts_games.py -n 20 --board-out features.npy --move-out labels.npy
+```
+
+### Arguments
+```
+--board-size: (default = 9) The size X, resulting in an X by X board.
+--rounds: (default = 1000) Number of rounds per game.
+--temperature: (default = 0.8): Affects the exponent used in MCTS algorithm.
+--max-moves (default = 60): Maximum moves per game.
+--num-games: (default = 10): The number of games to generate.
+--board-out, --move-out: REQUIRED! This is where the training data gets stored
+```
+
 # Using the already trained bots
 We've already trained two bots that perform at around 90% accuracy. If you'd like to use these bots
 as demos for the above scripts, they can be found [in this Google Drive folder](https://drive.google.com/drive/folders/1HZUnoPckNOFC3Rw34y7YMT4-ILS_R9Hu?usp=sharing). 
