@@ -18,7 +18,7 @@ python train_new_bot.py --bot-name=first_bot --epochs=15 --num-samples=300
 ```
 
 ### Tips
-    -Some errors may occur. I found that, sometimes, deleting the data/ directory and running the script again fixes some errors. Give this a try.
+Some errors may occur. I found that, sometimes, deleting the data/ directory and running the script again fixes some errors. Give this a try.
 
 
 # Bot vs. Bot
