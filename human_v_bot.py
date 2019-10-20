@@ -1,16 +1,26 @@
 from __future__ import print_function
-# tag::play_against_your_bot[]
 from dlgo import agent
 from dlgo import goboard
 from dlgo import gotypes
 from get_score import compute_score
 from dlgo.utils import print_board, print_move, point_from_coords
+from dlgo.agent.predict import DeepLearningAgent, load_prediction_agent
 from six.moves import input
+import time
+import h5py
+import argparse
 
+parser = argparse.ArgumentParser()
+parser.add_argument('--bot-file', help="Path to the h5 file that has the bot. i.e. ./agents/deep_bot.h5", required=True)
+
+args = parser.parse_args()
+
+agent1 = h5py.File(args.bot_file, "r")
+bot_1_from_file = load_prediction_agent(agent1)
 
 def main():
     while True:
-        board_size = input('Enter the dimensions of the square Go board. (Integer between 5 and 19):')
+        board_size = 19
         try:
             board_size = int(board_size)
         except ValueError:
@@ -21,7 +31,7 @@ def main():
         else:
             print('Invalid Entry')
     game = goboard.GameState.new_game(board_size)
-    bot = agent.RandomBot()
+    bot = bot_1_from_file
 
     while not game.is_over():
         print(chr(27) + "[2J")
@@ -40,4 +50,3 @@ def main():
 if __name__ == '__main__':
     main()
 # end::play_against_your_bot[]
-

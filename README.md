@@ -38,6 +38,21 @@ python bot_v_bot.py --bot-file-1 ./agents/deep_bot_2.h5 --bot-file-2 ./agents/de
 ```
 
 
+# Human vs. Bot
+Call `human_v_bot.py` to watch two bots play a game of Go! I have included two trained bots (~90% accuracy each) that can work as a demo. They can be found in the Google Drive link at the bottom of this document.
+
+### Usage Example
+```
+python human_v_bot.py --bot-file ./agents/deep_bot_2.h5
+```
+
+### Arguments
+```
+--bot-file: REQUIRED! The file path to the h5 file that has the bot to be used.
+    i.e. ./agents/deep_bot_2.h5
+```
+
+
 # Evaluate bots in parallel
 Using `eval_bots_parallel.py`, you can make two bots play multiple games to see which one is the best one!
 
