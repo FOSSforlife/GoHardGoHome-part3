@@ -8,7 +8,7 @@
     - This is done using [generate_mcts_games.py](./generate_mcts_games.py)
 - [ ] Confirm the CNN from listings 6.24-26 of your text runs, and produces the output shown in your text. Print out the **probabilities of its recommended moves** (see 6.26).
     - [training_cnn.py](./training_cnn.py)
-- [x] Create the KGSIndex class that downloads SGF files from https://u-go.net/gamerecords, and download the files. (see listing 7.1).
+- [ ] Create the KGSIndex class that downloads SGF files from https://u-go.net/gamerecords, and download the files. (see listing 7.1).
     - .
 - [x] Replay the (pretend) game from Listing 7.2. Make sure it replays the game correctly.
     - [game_replay.py](./game_replay.py)
