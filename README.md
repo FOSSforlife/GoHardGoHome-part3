@@ -1,4 +1,4 @@
-## Training a new bot
+# Training a new bot
 To train a new bot, call `train_new_bot.py` from the root directory.
 
 ### Usage Example
@@ -20,7 +20,8 @@ python train_new_bot.py --bot-name=first_bot --epochs=15 --num-samples=300
 ### Tips
     -Some errors may occur. I found that, sometimes, deleting the data/ directory and running the script again fixes some errors. Give this a try.
 
-## Bot vs. Bot
+
+# Bot vs. Bot
 Call `bot_v_bot.py` to watch two bots play a game of Go! I have included two trained bots (~90% accuracy each) that can work as a demo. They can be seen in the in the example arguments below.
 
 ### Usage Example
@@ -37,7 +38,7 @@ python bot_v_bot.py --bot-file-1 ./agents/deep_bot_2.h5 --bot-file-2 ./agents/de
 ```
 
 
-## Evaluate bots in parallel
+# Evaluate bots in parallel
 Using `eval_bots_parallel.py`, you can make two bots play multiple games to see which one is the best one!
 
 ### Arguments
