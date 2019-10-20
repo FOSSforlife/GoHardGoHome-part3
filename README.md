@@ -6,7 +6,7 @@
     - To test the MCTSAgent, run this command: `python ???.py`
 - [x] Create a program to create, and run Go games, and save them. Use it to generate 20 9x9 Go games, and store the features in features.py, and the labels in labels.py.
     - This is done using [generate_mcts_games.py](./generate_mcts_games.py)
-- [ ] Confirm the CNN from listings 6.24-26 of your text runs, and produces the output shown in your text. Print out the probabilities of its recommended moves (see 6.26).
+- [ ] Confirm the CNN from listings 6.24-26 of your text runs, and produces the output shown in your text. Print out the **probabilities of its recommended moves** (see 6.26).
     - [mcts_go_cnn.py](./mcts_go_cnn.py)
 - [x] Create the KGSIndex class that downloads SGF files from https://u-go.net/gamerecords, and download the files. (see listing 7.1).
     - .
