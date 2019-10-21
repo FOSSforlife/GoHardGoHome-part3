@@ -2,9 +2,9 @@
 
 ## Requirements
 - [x] Create the [generate_mcts_games](./generate_mcts_games.py) file, which generates games by encoding the game state before each move, encodes the move as a one-hot vector, and applies it.
-- [ ] Implement Monte-Carlo tree search, alpha-beta pruning and minimax (ch. 4). Create an MCTSAgent and let it play against itself.
-    - [ ] We did not create an agent with all of these features. However, we downloaded and observed the code for alpha-beta pruning and minimax (seen in the minimax folder), as well as a default MCTSAgent from the author's GitHub.
-    - [x] We did, however, write code enabling the MCTSAgent to play against itself in our [generate_mcts_games.py](./generate_mcts_games.py)
+- [x] Implement Monte-Carlo tree search, alpha-beta pruning and minimax (ch. 4). Create an MCTSAgent and let it play against itself.
+    - We created minimax and alphabeta agents, and we subsequently created a program to have them play against each other to prove they are correctly implemented (alphabeta_minimax_test.py). We did this by downloading and observing the code for alpha-beta pruning and depth-pruned minimax (seen in the minimax folder), as well as a default MCTSAgent from the author's GitHub.
+    - We wrote code enabling the MCTSAgent to play against itself in our [generate_mcts_games.py](./generate_mcts_games.py)
 - [x] Create a program to create, and run Go games, and save them. Use it to generate 20 9x9 Go games, and store the features in features.py, and the labels in labels.py.
     - This is done using [generate_mcts_games.py](./generate_mcts_games.py)
 - [x] Confirm the CNN from listings 6.24-26 of your text runs, and produces the output shown in your text. Print out the probabilities of its recommended moves (see 6.26).
@@ -52,11 +52,11 @@ python train_new_bot.py --bot-name=first_bot --epochs=15 --num-samples=300
 ```
 
 ### Tips
-Some errors may occur. I found that, sometimes, deleting the data/ directory and running the script again fixes some errors. Give this a try.
+Some errors may occur. We found that, sometimes, deleting the data/ directory and running the script again fixes some errors. Give this a try.
 
 
 # Bot vs. Bot
-Call `bot_v_bot.py` to watch two bots play a game of Go! I have included two trained bots (~90% accuracy each) that can work as a demo. They can be found in the Google Drive link at the bottom of this document.
+Call `bot_v_bot.py` to watch two CNN bots play a game of Go! we have included two trained bots (~90% accuracy each) that can work as a demo. They can be found in the Google Drive link at the bottom of this document.
 
 ### Usage Example
 ```
@@ -74,7 +74,7 @@ python bot_v_bot.py --bot-file-1 ./agents/deep_bot_2.h5 --bot-file-2 ./agents/de
 
 
 # Human vs. Bot
-Call `human_v_bot.py` to watch two bots play a game of Go! I have included two trained bots (~90% accuracy each) that can work as a demo. They can be found in the Google Drive link at the bottom of this document.
+Call `human_v_bot.py` to play against one of our bots in a game of Go! We have included a trained bot (~90% accuracy each) that can work as a demo. It can be found in the Google Drive link at the bottom of this document.
 
 ### Usage Example
 ```
@@ -111,7 +111,10 @@ python eval_bots_parallel.py --agent1 ./agents/deep_bot_2.h5 --agent2 ./agents/d
 ```
 
 
-   
+# Testing our alpha beta and depth-pruned minimax agents
+Using 'alphabeta_minimax_test', you can make these two agents play against themselves and witness that they are correctly implemented.
+
+
 # Generate games for training data
 The script `generate_mcts_games.py` generates games using the MCTS algorithm. Use this to create features.py and labels.py before training the bot (note: this step shouldn't be necessary if you wish to use the files in the generated_games folder).
 
