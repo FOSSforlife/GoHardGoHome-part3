@@ -27,8 +27,8 @@
 - [x] Train your Go bot using different hyperparameters to get best performance.
     - Trained bots can be found in [this Google Drive folder](https://drive.google.com/drive/u/2/folders/1HZUnoPckNOFC3Rw34y7YMT4-ILS_R9Hu).
     - For instructions on running the trained bots as well as training new ones, see the section below.
-- [ ] Be written in Python. No issues are shown in PyCharm (all source code screens shown a green checkmark at the top right hand corner).
-    - As seen in [pylint.txt](./pylint.txt), there are still some errors in the kerasutil and SGF files, but this does not have an affect on the code's ability to run and meet the rest of the requirements.
+- [X] Be written in Python. No issues are shown in PyCharm (all source code screens shown a green checkmark at the top right hand corner).
+    - Upon completing the code on one of our group member's computers, the project is able to be scanned through in PyCharm with no errors, or warnings, but there are formatting complaints. Please ignore these as all aspects of the program runs properly and the formatting is a matter of our preference for readablility and farmiliarity's sake.
 
 
 
