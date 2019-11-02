@@ -4,7 +4,7 @@ import sys
 
 from dlgo.gtp import command, response
 from dlgo.gtp.board import gtp_position_to_coords, coords_to_gtp_position
-from dlgo.goboard_fast import GameState, Move
+from dlgo.goboard import GameState, Move
 from dlgo.agent.termination import TerminationAgent
 from dlgo.utils import print_board
 # end::gtp_frontend_imports[]

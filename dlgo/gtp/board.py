@@ -1,6 +1,6 @@
 # tag::gtp_coords_imports[]
 from dlgo.gotypes import Point
-from dlgo.goboard_fast import Move
+from dlgo.goboard import Move
 # end::gtp_coords_imports[]
 
 __all__ = [
