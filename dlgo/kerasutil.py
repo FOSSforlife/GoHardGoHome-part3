@@ -41,6 +41,7 @@ def set_gpu_memory_target(frac):
         return
     import tensorflow as tf
     from keras.backend.tensorflow_backend import set_session
-    config = tf.ConfigProto()
-    config.gpu_options.per_process_gpu_memory_fraction = frac
-    set_session(tf.Session(config=config))
+    config = tf.compat.v1.ConfigProto()
+    config.gpu_options.per_process_gpu_memory_fraction = min(0.8, frac)
+    config.gpu_options.allow_growth = True
+    set_session(tf.compat.v1.Session(config=config))

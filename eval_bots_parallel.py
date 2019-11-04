@@ -75,8 +75,8 @@ def play_games(args):
     random.seed(int(time.time()) + os.getpid())
     np.random.seed(int(time.time()) + os.getpid())
 
-    agent1 = load_prediction_agent(h5py.File(agent1_fname))
-    agent2 = load_prediction_agent(h5py.File(agent2_fname))
+    agent1 = load_prediction_agent(h5py.File(agent1_fname, 'r'))
+    agent2 = load_prediction_agent(h5py.File(agent2_fname, 'r'))
 
     wins, losses = 0, 0
     color1 = Player.black
