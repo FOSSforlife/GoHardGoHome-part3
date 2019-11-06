@@ -369,8 +369,13 @@ class GameState():
     def is_over(self):
         if self.last_move is None:
             return False
-        if self.last_move.is_resign:
-            return True
+        try:
+            if self.last_move.is_resign:
+                return True
+        except AttributeError:
+            # print("last_move: {}".format(self.last_move))
+            self.last_move = None
+            return False
         second_last_move = self.previous_state.last_move
         if second_last_move is None:
             return False

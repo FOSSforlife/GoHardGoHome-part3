@@ -2,6 +2,7 @@ import copy
 from dlgo.gotypes import Player, Point
 from dlgo.scoring import compute_game_result
 from dlgo import zobrist
+from dlgo.utils import MoveAge
 
 __all__ = [
     'Board',
@@ -9,6 +10,41 @@ __all__ = [
     'Move',
 ]
 
+
+neighbor_tables = {}
+corner_tables = {}
+
+def init_neighbor_table(dim):
+    rows, cols = dim
+    new_table = {}
+    for r in range(1, rows + 1):
+        for c in range(1, cols + 1):
+            p = Point(row=r, col=c)
+            full_neighbors = p.neighbors()
+            true_neighbors = [
+                n for n in full_neighbors
+                if 1 <= n.row <= rows and 1 <= n.col <= cols]
+            new_table[p] = true_neighbors
+    neighbor_tables[dim] = new_table
+
+
+def init_corner_table(dim):
+    rows, cols = dim
+    new_table = {}
+    for r in range(1, rows + 1):
+        for c in range(1, cols + 1):
+            p = Point(row=r, col=c)
+            full_corners = [
+                Point(row=p.row - 1, col=p.col - 1),
+                Point(row=p.row - 1, col=p.col + 1),
+                Point(row=p.row + 1, col=p.col - 1),
+                Point(row=p.row + 1, col=p.col + 1),
+            ]
+            true_corners = [
+                n for n in full_corners
+                if 1 <= n.row <= rows and 1 <= n.col <= cols]
+            new_table[p] = true_corners
+    corner_tables[dim] = new_table
 
 class IllegalMoveError(Exception):
     pass
@@ -56,6 +92,22 @@ class Board:
         self.num_cols = num_cols
         self._grid = {}
         self._hash = zobrist.EMPTY_BOARD
+
+        global neighbor_tables
+        dim = (num_rows, num_cols)
+        if dim not in neighbor_tables:
+            init_neighbor_table(dim)
+        if dim not in corner_tables:
+            init_corner_table(dim)
+        self.neighbor_table = neighbor_tables[dim]
+        self.corner_table = corner_tables[dim]
+        self.move_ages = MoveAge(self)
+
+    def neighbors(self, point):
+        return self.neighbor_table[point]
+
+    def corners(self, point):
+        return self.corner_table[point]
 
     def place_stone(self, player, point):
         assert self.is_on_grid(point)
@@ -231,8 +283,12 @@ class GameState:
     def is_over(self):
         if self.last_move is None:
             return False
-        if self.last_move.is_resign:
-            return True
+        try:
+            if self.last_move.is_resign:
+                return True
+        except AttributeError:
+            # print("last_move: {}".format(self.last_move))
+            return False
         second_last_move = self.previous_state.last_move
         if second_last_move is None:
             return False
