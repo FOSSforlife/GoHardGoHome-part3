@@ -17,7 +17,7 @@ class DataGenerator:
         if self.num_samples is not None:
             return self.num_samples
         else:
-            self.num_samples = 0
+            self.num_samples = 1
             for X, y in self._generate(batch_size=batch_size, num_classes=num_classes):
                 self.num_samples += X.shape[0]
             return self.num_samples

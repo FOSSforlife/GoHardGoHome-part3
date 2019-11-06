@@ -9,7 +9,7 @@ import h5py
 
 rows, cols = 19, 19
 num_classes = rows * cols
-num_games = 10000
+num_games = 2
 
 encoder = AlphaGoEncoder()
 processor = GoDataProcessor(encoder=encoder.name())
@@ -25,7 +25,7 @@ alphago_sl_policy.compile('sgd', 'categorical_crossentropy', metrics=['accuracy'
 # end::alphago_sl_model[]
 
 # tag::alphago_sl_train[]
-epochs = 200
+epochs = 3
 batch_size = 128
 alphago_sl_policy.fit_generator(
     generator=generator.generate(batch_size, num_classes),
