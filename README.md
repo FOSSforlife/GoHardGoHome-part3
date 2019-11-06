@@ -3,6 +3,7 @@
 For any machine intended to host our go bot locally, the following command should be entered onto the command prompt:
 
   Windows Users: SET PATH=/path/to/deep_learning_and_the_game_of_go/code:$PATH
+  
   Linux Users: export PATH=/path/to/deep_learning_and_the_game_of_go/code:$PATH
 You should have Node.js and all of its relevant dependencies downloaded for this process to work. Then run the following command with the bot of your choice:
 
