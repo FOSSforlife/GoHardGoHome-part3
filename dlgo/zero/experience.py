@@ -8,7 +8,7 @@ __all__ = [
 ]
 
 
-# tag::zero_experience_collector[]
+
 class ZeroExperienceCollector:
     def __init__(self):
         self.states = []
@@ -33,7 +33,7 @@ class ZeroExperienceCollector:
 
         self._current_episode_states = []
         self._current_episode_visit_counts = []
-# end::zero_experience_collector[]
+
 
 
 class ZeroExperienceBuffer:

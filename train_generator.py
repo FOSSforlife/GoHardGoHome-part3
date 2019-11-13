@@ -42,4 +42,3 @@ if __name__ == '__main__':
 
     model.evaluate_generator(generator=test_generator.generate(batch_size, num_classes),
                             steps=test_generator.get_num_samples() / batch_size)  
-    # end::train_generator_fit[]
