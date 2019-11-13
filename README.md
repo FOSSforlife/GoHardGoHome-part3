@@ -36,9 +36,9 @@
 
 - [x] Improve your MCTS rollout policy to use your policy network to guide rollouts, instead of just making moves at random
 
-- [x] Winning percentage against other Go bot engines gets you into the top six in the class.
+- [ ] Winning percentage against other Go bot engines gets you into the top six in the class.
 
-- [x] Winning percentage against other Go bot engines gets your bot into the top three.
+- [ ] Winning percentage against other Go bot engines gets your bot into the top three.
 
 - [x] Train your Go bot using different hyper-parameters to get best performance.
 
