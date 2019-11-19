@@ -74,7 +74,7 @@ You should have Node.js and all of its relevant dependencies downloaded for this
 ```bash
   cd deep_learning_and_the_game_of_go/code 
   npm install
-  forever start gtp2ogs.js --username GoingInsaneBot --apikey 2b52acfc62953e38df0b961524895dd81b25bf5c /
+  node gtp2ogs.js --username GoingInsaneBot --apikey 2b52acfc62953e38df0b961524895dd81b25bf5c /
   --hidden --persist --boardsize 19 --debug -- run_gtp.py
  ```
   
