@@ -9,14 +9,16 @@ import h5py
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--bot-file-1', help="Path to the h5 file that has the bot. i.e. ./agents/deep_bot.h5", required=True)
-parser.add_argument('--bot-file-2', help="Path to the h5 file that has the bot. i.e. ./agents/deep_bot.h5", required=True)
+parser.add_argument('--bot-file-1', help="Path to the h5 file that has the bot. i.e. ./agents/deep_bot.h5")
+parser.add_argument('--bot-file-2', help="Path to the h5 file that has the bot. i.e. ./agents/deep_bot.h5")
 parser.add_argument('--print-probs', help="If set, print probabilities of each move during the bot's turn", action="store_true")
 
 args = parser.parse_args()
 
-agent1 = h5py.File(args.bot_file_1, "r")
-agent2 = h5py.File(args.bot_file_2, "r")
+# agent1 = h5py.File(args.bot_file_1, "r")
+# agent2 = h5py.File(args.bot_file_2, "r")
+agent1 = h5py.File("agents/GHGHbot1_rl_policy.h5", "r")
+agent2 = h5py.File("agents/GHGHbot1_sl_policy.h5", "r")
 bot_1_from_file = load_prediction_agent(agent1, print_probs = args.print_probs)
 bot_2_from_file = load_prediction_agent(agent2, print_probs = args.print_probs)
 

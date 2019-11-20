@@ -7,15 +7,15 @@ import h5py
 
 encoder = AlphaGoEncoder()
 
-sl_agent = load_prediction_agent(h5py.File('agents/test_alphago_sl_policy.h5'))
-sl_opponent = load_prediction_agent(h5py.File('agents/test_alphago_sl_policy.h5'))
+sl_agent = load_prediction_agent(h5py.File('agents/aws1_sl_policy.h5'))
+sl_opponent = load_prediction_agent(h5py.File('agents/aws1_sl_policy.h5'))
 
 alphago_rl_agent = PolicyAgent(sl_agent.model, encoder)
 opponent = PolicyAgent(sl_opponent.model, encoder)
 
 
 
-num_games = 1000
+num_games = 100
 experience = experience_simulation(num_games, alphago_rl_agent, opponent)
 
 alphago_rl_agent.train(experience)
