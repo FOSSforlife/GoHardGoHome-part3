@@ -3,15 +3,15 @@
 - [x] Created an end-to-end application (DeepLearningAgent) to train/run a Go bot (ch 8.1)
   - [dlgo/agent/predict.py](predict.py)
 
-- [ ] Used the web interface and flask server to play your Go bot using an attractive UI (ch 8.2)
-  - Run the [web_random_bot.py](web_random_bot.py) file, then open http://localhost:5000/static/play_random_99.html in a browser to run the random bot. Currently the HTTP frontend runs the random bot instead of our Go bot, but we will add our bot to this once it is finished training. 
+- [x] Used the web interface and flask server to play your Go bot using an attractive UI (ch 8.2)
+  - Run the [web_bot.py](web_random_bot.py) file, then open http://localhost:5000/static/play_ghgh.html in a browser to play against our bot.
 
 - [x] Have created an AWS account (one for yourself and one for your bot) to allow training of your bot and deploying it. (ch. 8.3 and Appendix C)
 
 - [x] Have installed gnugo as a LOCAL GTP server using the Go Text Protocol. The server can berun using a user interface such as Sabaki, Lizzie, GoRilla, or q5Go (Appendix C).
 
 - [x] Create a web application using a Flask server that allows you to play against your bot using a browser to: localhost:5000/static/play_random_99.html . The browser will show a traditional (graphic) view of a Go game, with black and white stones on a wooden board (ch 8) (pp. 229-30).
-  - See the second item on the checklist.
+  - This can be run using [web_bot.py](web_bot.py) or [web_random_bot.py](web_random_bot.py).
 
 - [x] Created a GTP frontend for your bot (chs. 8.4 and 8.5)
   - The code for this can be seen in [dlgo/gtp](dlgo/gtp). You can properly test this is working correctly once we train and upload our bot.
