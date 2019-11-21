@@ -74,8 +74,9 @@ You should have Node.js and all of its relevant dependencies downloaded for this
 ```bash
   cd deep_learning_and_the_game_of_go/code 
   npm install
-  node gtp2ogs.js --username GoingInsaneBot --apikey 2b52acfc62953e38df0b961524895dd81b25bf5c /
-  --hidden --persist --boardsize 19 --debug -- run_gtp.py
+  npm install -g forever
+  forever start gtp2ogs.js --username GoingInsaneBot --apikey 2b52acfc62953e38df0b961524895dd81b25bf5c /
+  --hidden --persist --boardsize 19 --debug -- python3 run_gtp.py
  ```
   
 Note that <bot> is the filename of the bot that you want people to play against. To stop running the bot on your computer, enter 'forever stopall' on the command line.
