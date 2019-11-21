@@ -19,7 +19,7 @@
 - [ ] Your bot can play against two other local Go bots (gnugo and pachi). Gnugo has strength 12 kyu. Pachi has strength 2d to 7d, depending on the strength of the computer running it.
   - The code for this is located in [play_local.py](play_local.py), but the script currently hangs after successfully loading Pachi. To test Gnugo, change line 152 `opponent='pachi'` to `opponent='gnugo'`.
 
-- [ ] Your bot has been deployed on the OGS (online Go Server) platform (Appendix E)
+- [x] Your bot has been deployed on the OGS (online Go Server) platform (Appendix E)
   - There are instructions below for deploying the bot, but we were not quite able to get this running.
 
 - [x] Make a self-improving Deep Learning agent using Reinforcement learning, collecting experience data by playing copies of itself. (ch. 9)
