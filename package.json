@@ -10,7 +10,7 @@
     "gtp2ogs": "gtp2ogs.js"
   },
   "dependencies": {
-    "socket.io-client": "=1.5.1",
+    "socket.io-client": "=4.5.4",
     "optimist": "=0.6.1",
     "tracer": "=0.8.7"
   },
